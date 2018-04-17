@@ -21,7 +21,7 @@ public class ContactsService {
 	
 	public String invalidEmail() {
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("errorCode", "1234");
+		jsonObj.put("errorCode", "1001");
 		jsonObj.put("reason", "Email id format is incorrect");
 		return jsonObj.toJSONString();
 	}
@@ -30,6 +30,13 @@ public class ContactsService {
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("errorCode", "1234");
 		jsonObj.put("reason", "Invalid Authentication");
+		return jsonObj.toJSONString();
+	}
+	
+	public String noConnection() {
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("errorCode", "1004");
+		jsonObj.put("reason", "Connection not found");
 		return jsonObj.toJSONString();
 	}
 	

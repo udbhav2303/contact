@@ -37,7 +37,7 @@ public class ContactBookEndPoint {
 			return contactService.invalidAuth();
 		if(con != null)
 			return DBConnection.fetchContact(pUser,pTemp,pLimit,pOffset);
-		return "Connection not found";
+		return contactService.noConnection();
 	}
 	
 	@PUT
@@ -54,7 +54,7 @@ public class ContactBookEndPoint {
 		if(con != null) {
 			return DBConnection.updateContact(pUser,pEmailId,contact.getName());
 		}
-		return "Connection not found";
+		return contactService.noConnection();
 	}
 	
 	@POST
@@ -72,7 +72,7 @@ public class ContactBookEndPoint {
 		if(con != null) {
 			return DBConnection.insertContact(pUser,contact.getEmailId(),contact.getName());
 		}
-		return "Connection not found";
+		return contactService.noConnection();
 	}
 	
 	@DELETE
@@ -88,7 +88,7 @@ public class ContactBookEndPoint {
 		if(con != null) {
 			return DBConnection.deleteContact(pUser,pEmailId);
 		}
-		return "Connection not found";
+		return contactService.noConnection();
 	}
 	
 }

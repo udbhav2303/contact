@@ -33,7 +33,7 @@ public class AuthUserEndoint {
 				auth_token = userService.generateToken();
 			return DBConnection.addUser(user_id,auth_token);
 		}
-		return "Connection not found";
+		return userService.noConnection();
 	}
 
 }

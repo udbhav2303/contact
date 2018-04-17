@@ -60,7 +60,6 @@ public class DBConnection {
 				ps.setString(2, pEmailId);
 				ResultSet result = ps.executeQuery();
 				if(!result.next()) {
-					//stmt.executeUpdate("INSERT INTO contacts_table VALUES (pName, pEmailId)");
 					PreparedStatement ps2 = con.prepareStatement(sql2);
 					ps2.setString(1, pName);
 					ps2.setString(2, pEmailId);
@@ -94,14 +93,15 @@ public class DBConnection {
 			ps.setInt(4, pLimit);
 			ps.setInt(5, pOffset);
 			ResultSet result = ps.executeQuery();
+			JSONArray jsonArray = new JSONArray();
 			while(result.next()){
-				JSONArray jsonArray = new JSONArray();
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("name", result.getString("name"));
 				jsonObj.put("emailId", result.getString("emailId"));
 				jsonArray.add(jsonObj);
-				return jsonArray.toJSONString();
 	        }
+			if(!jsonArray.isEmpty())
+				return jsonArray.toJSONString();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -145,7 +145,9 @@ public class DBConnection {
 			ps.setString(2, pEmailId);
 			int res = ps.executeUpdate();
 			if(res > 0) {
-				return pEmailId + " is deleted for user-" + pUser;
+				JSONObject jsonObj = new JSONObject();
+				jsonObj.put("output", pEmailId + " is deleted for user-" + pUser);
+				return jsonObj.toJSONString();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

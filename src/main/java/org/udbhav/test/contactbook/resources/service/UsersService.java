@@ -17,4 +17,11 @@ public class UsersService {
 		jsonObj.put("reason", "Invalid Authentication");
 		return jsonObj.toJSONString();
 	}
+	
+	public String noConnection() {
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("errorCode", "1004");
+		jsonObj.put("reason", "Connection not found");
+		return jsonObj.toJSONString();
+	}
 }
